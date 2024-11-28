@@ -27,9 +27,9 @@ pub fn build(b: *std.Build) void {
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).
-    exe.subsystem = .Windows;
-    exe.addIncludePath(.{ .cwd_relative = "../raylib" });
-    exe.addLibraryPath(.{ .cwd_relative = "../raylib" });
+    //exe.subsystem = .Windows;
+    exe.addIncludePath(.{ .cwd_relative = "../raylib/include" });
+    exe.addLibraryPath(.{ .cwd_relative = "../raylib/lib" });
     exe.linkLibC();
     exe.linkSystemLibrary("winmm");
     exe.linkSystemLibrary("gdi32");

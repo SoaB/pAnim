@@ -8,7 +8,7 @@ const rl = @cImport({
 const particle = @import("particle.zig").Particle;
 
 const EFFECT_NAME = "Effect1";
-const MAX_ITEMS = 100;
+const MAX_ITEMS = 250;
 pub const Effect1 = struct {
     pub const NAME = EFFECT_NAME;
     var Particles: [MAX_ITEMS]particle = undefined;
@@ -31,11 +31,9 @@ pub const Effect1 = struct {
                 if (distance < maxDistance) {
                     const opacity: u8 = @as(u8, @intFromFloat(255.0 * (1.0 - distance / maxDistance)));
                     const col: rl.Color = .{ .r = 255, .g = 255, .b = 255, .a = opacity };
-                    const x: i32 = @intFromFloat(Particles[a].x);
-                    const y: i32 = @intFromFloat(Particles[a].y);
-                    const x1: i32 = @intFromFloat(Particles[b].x);
-                    const y1: i32 = @intFromFloat(Particles[b].y);
-                    rl.DrawLine(x, y, x1, y1, col);
+                    const startPos: rl.Vector2 = .{ .x = Particles[a].x, .y = Particles[a].y };
+                    const endPos: rl.Vector2 = .{ .x = Particles[b].x, .y = Particles[b].y };
+                    rl.DrawLineV(startPos, endPos, col);
                 }
             }
         }

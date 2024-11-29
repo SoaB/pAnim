@@ -32,9 +32,10 @@ pub const Particle = struct {
     }
 
     pub fn draw(self: *Particle) void {
-        const xx: i32 = @intFromFloat(self.x);
-        const yy: i32 = @intFromFloat(self.y);
-        rl.DrawCircle(xx, yy, self.radius, rl.RED);
+        const pos: rl.Vector2 = .{ .x = self.x, .y = self.y };
+        const c: u8 = 255 - @as(u8, @intFromFloat(255 * self.radius / 14));
+        const col: rl.Color = .{ .r = c, .g = 5, .b = 5, .a = 255 };
+        rl.DrawCircleV(pos, self.radius, col);
     }
 
     pub fn update(self: *Particle, w: u32, h: u32) void {

@@ -39,8 +39,10 @@ pub const Effect1 = struct {
         }
     }
     pub fn update() void {
+        const mButtonDown: bool = rl.IsMouseButtonDown(rl.MOUSE_LEFT_BUTTON);
+        const mousePos: rl.Vector2 = rl.GetMousePosition();
         for (0..MAX_ITEMS) |i| {
-            Particles[i].update(w, h);
+            Particles[i].update(mButtonDown, mousePos);
         }
     }
     pub fn draw() void {

@@ -38,8 +38,7 @@ pub const Particle = struct {
 
     pub fn draw(self: *Particle) void {
         const pos: rl.Vector2 = .{ .x = self.x, .y = self.y };
-        const c: u8 = 255 - @as(u8, @intFromFloat(255 * self.radius / MAX_RADIUS));
-        const col: rl.Color = .{ .r = c, .g = 5, .b = 5, .a = 255 };
+        const col: rl.Color = rl.ColorFromHSV((self.x / self.w) * 360, 0.75, 1);
         rl.DrawCircleV(pos, self.radius, col);
     }
 

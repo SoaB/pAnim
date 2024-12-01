@@ -21,8 +21,10 @@ pub fn main() !void {
     while (!rl.WindowShouldClose()) {
         rl.BeginDrawing();
         rl.ClearBackground(rl.BLACK);
+        rl.BeginBlendMode(rl.BLEND_ADDITIVE);
         effect1.update();
         effect1.draw();
+        rl.EndBlendMode();
         rl.EndDrawing();
     }
     //rl.UnloadRenderTexture(canvas);
